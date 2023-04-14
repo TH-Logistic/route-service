@@ -10,5 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateLocationRequest {
-
+    @NotBlank(message = "Invalid name")
+    String name;
+    @NotBlank(message = "Invalid address")
+    String address;
+    @NotNull(message = "Invalid latitude")
+    Double latitude;
+    @NotNull(message = "Invalid longitude")
+    Double longitude;
 }
