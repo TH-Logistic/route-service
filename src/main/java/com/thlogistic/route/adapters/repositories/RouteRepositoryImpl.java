@@ -1,10 +1,15 @@
 package com.thlogistic.route.adapters.repositories;
 
 import com.thlogistic.route.core.ports.RouteRepository;
+import com.thlogistic.route.entities.LocationEntity;
 import com.thlogistic.route.entities.RouteEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,22 +19,28 @@ public class RouteRepositoryImpl implements RouteRepository {
     private final MongoRouteRepository repository;
 
     @Override
-    public String insert(RouteEntity Route) {
-        return null;
+    public String insert(RouteEntity route) {
+        return repository.insert(route).getId();
     }
 
     @Override
-    public String save(RouteEntity Route) {
-        return null;
+    public String save(RouteEntity route) {
+        return repository.save(route).getId();
     }
 
     @Override
     public Optional<RouteEntity> findById(String id) {
-        return Optional.empty();
+        return repository.findById(id);
     }
 
     @Override
-    public BasePagingQueryResult<List<RouteEntity>> list(String keyword, Integer page, Integer size) {
-        return null;
+    public BasePagingQueryResult<List<RouteEntity>> pagingByLocationIds(Collection<String> locationIds, Double minLength, Double maxLength, Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<RouteEntity> locations = repository.findByStartLocationIdInOrEndLocationIdInAndLengthBetween(locationIds, locationIds, minLength, maxLength, pageable);
+        BasePagingQueryResult<List<RouteEntity>> result = new BasePagingQueryResult<>();
+        result.data = locations.getContent();
+        result.total = locations.getTotalElements();
+        result.totalPage = locations.getTotalPages();
+        return result;
     }
 }

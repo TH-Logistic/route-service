@@ -1,11 +1,11 @@
 package com.thlogistic.route.core.usecases;
 
-import com.thlogistic.route.adapters.dtos.BasePagingResponse;
-import com.thlogistic.route.adapters.dtos.GetLocationResponse;
-import com.thlogistic.route.adapters.dtos.ListLocationPagingRequest;
+import com.thlogistic.route.core.entities.Location;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public
-interface ListLocationUseCase extends BaseUseCase<ListLocationPagingRequest, BasePagingResponse<GetLocationResponse>> {
+interface ListLocationUseCase extends BaseUseCase<String, List<Location>> {
 }

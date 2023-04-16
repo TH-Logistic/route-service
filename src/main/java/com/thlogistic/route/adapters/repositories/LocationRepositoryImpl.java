@@ -17,13 +17,13 @@ public class LocationRepositoryImpl implements LocationRepository {
     private final MongoLocationRepository repository;
 
     @Override
-    public String insert(LocationEntity Location) {
-        return repository.insert(Location).getId();
+    public String insert(LocationEntity location) {
+        return repository.insert(location).getId();
     }
 
     @Override
-    public String save(LocationEntity Location) {
-        return repository.save(Location).getId();
+    public String save(LocationEntity location) {
+        return repository.save(location).getId();
     }
 
     @Override
@@ -32,19 +32,27 @@ public class LocationRepositoryImpl implements LocationRepository {
     }
 
     @Override
-    public BasePagingQueryResult<List<LocationEntity>> list(String keyword, Integer page, Integer size) {
+    public BasePagingQueryResult<List<LocationEntity>> paging(String keyword, Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<LocationEntity> Locations;
+        Page<LocationEntity> locations;
         if (keyword == null || keyword.isEmpty()) {
-            Locations = repository.findAll(pageable);
+            locations = repository.findAll(pageable);
         } else {
-            Locations = repository.findByNameContainingIgnoreCaseOrAddressContainingIgnoreCase(keyword, keyword, pageable);
+            locations = repository.findByNameContainingIgnoreCaseOrAddressContainingIgnoreCase(keyword, keyword, pageable);
         }
 
         BasePagingQueryResult<List<LocationEntity>> result = new BasePagingQueryResult<>();
-        result.data = Locations.getContent();
-        result.total = Locations.getTotalElements();
-        result.totalPage = Locations.getTotalPages();
+        result.data = locations.getContent();
+        result.total = locations.getTotalElements();
+        result.totalPage = locations.getTotalPages();
         return result;
+    }
+
+    @Override
+    public List<LocationEntity> findByKeyword(String keyword) {
+        if (keyword == null || keyword.isEmpty()) {
+            throw new RuntimeException("Invalid keyword");
+        }
+        return repository.findByNameContainingIgnoreCaseOrAddressContainingIgnoreCase(keyword, keyword);
     }
 }

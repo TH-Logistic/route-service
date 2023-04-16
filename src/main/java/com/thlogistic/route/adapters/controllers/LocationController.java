@@ -2,7 +2,7 @@ package com.thlogistic.route.adapters.controllers;
 
 import com.thlogistic.route.adapters.dtos.*;
 import com.thlogistic.route.core.usecases.CreateLocationUseCase;
-import com.thlogistic.route.core.usecases.ListLocationUseCase;
+import com.thlogistic.route.core.usecases.PagingLocationUseCase;
 import com.thlogistic.route.core.usecases.UpdateLocationUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
@@ -15,11 +15,11 @@ public class LocationController extends BaseController implements LocationResour
 
     private final CreateLocationUseCase createLocationUseCase;
     private final UpdateLocationUseCase updateLocationUseCase;
-    private final ListLocationUseCase listLocationUseCase;
+    private final PagingLocationUseCase pagingLocationUseCase;
 
     @Override
-    public ResponseEntity<Object> listLocation(ListLocationPagingRequest request) {
-        BasePagingResponse<GetLocationResponse> result = listLocationUseCase.execute(request);
+    public ResponseEntity<Object> listLocation(PagingLocationRequest request) {
+        BasePagingResponse<GetLocationResponse> result = pagingLocationUseCase.execute(request);
         return successResponse(result, null);
     }
 

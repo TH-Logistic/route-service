@@ -1,7 +1,7 @@
 package com.thlogistic.route.adapters.controllers;
 
 import com.thlogistic.route.adapters.dtos.CreateLocationRequest;
-import com.thlogistic.route.adapters.dtos.ListLocationPagingRequest;
+import com.thlogistic.route.adapters.dtos.PagingLocationRequest;
 import com.thlogistic.route.adapters.dtos.UpdateLocationRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/location")
 interface LocationResource {
     @GetMapping("/list")
-    ResponseEntity<Object> listLocation(@Valid ListLocationPagingRequest request);
+    ResponseEntity<Object> listLocation(@Valid PagingLocationRequest request);
 
     @PostMapping
     ResponseEntity<Object> createLocation(@Valid @RequestBody CreateLocationRequest request);

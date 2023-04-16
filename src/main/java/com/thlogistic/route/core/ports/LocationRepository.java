@@ -14,6 +14,7 @@ public interface LocationRepository {
 
     Optional<LocationEntity> findById(String id);
 
-    BasePagingQueryResult<List<LocationEntity>> list(String keyword, Integer page, Integer size);
+    BasePagingQueryResult<List<LocationEntity>> paging(String keyword, Integer page, Integer size);
+    List<LocationEntity> findByKeyword(String keyword);
 
 }

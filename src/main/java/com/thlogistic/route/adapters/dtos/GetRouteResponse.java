@@ -12,15 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class CreateRouteRequest {
-    @NotBlank(message = "Invalid start location ID ")
-    String startLocationId;
-    @NotBlank(message = "Invalid end location ID ")
-    String endLocationId;
-    @Min(value = 0, message = "Invalid length")
+public class GetRouteResponse {
+    String id;
+    SimpleGetLocationResponse fromLocation;
+    SimpleGetLocationResponse toLocation;
     Double length;
-    @Min(value = 0, message = "Invalid trip-based cost")
     Double tripBasedCost;
-    @Min(value = 0, message = "Invalid ton-based limit")
     Double tonBasedLimit;
+    Boolean isEnable;
 }

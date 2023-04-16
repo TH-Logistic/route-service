@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class ListLocationPagingRequest extends BasePagingRequest {
+public class PagingLocationRequest extends BasePagingRequest {
     String keyword;
 }
