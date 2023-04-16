@@ -2,7 +2,7 @@ package com.thlogistic.route.core.usecases;
 
 import com.thlogistic.route.adapters.dtos.BasePagingResponse;
 import com.thlogistic.route.adapters.dtos.GetRouteResponse;
-import com.thlogistic.route.adapters.dtos.ListRoutePagingRequest;
+import com.thlogistic.route.adapters.dtos.PagingRouteRequest;
 import com.thlogistic.route.adapters.repositories.BasePagingQueryResult;
 import com.thlogistic.route.core.entities.Location;
 import com.thlogistic.route.core.ports.RouteRepository;
@@ -24,7 +24,7 @@ public class PagingRouteUseCaseImpl implements PagingRouteUseCase {
     private final GetLocationUseCase getLocationUseCase;
 
     @Override
-    public BasePagingResponse<GetRouteResponse> execute(ListRoutePagingRequest request) {
+    public BasePagingResponse<GetRouteResponse> execute(PagingRouteRequest request) {
         String keywordQuery = request.getKeyword();
         List<Location> locationContainsKeywordList = listLocationUseCase.execute(keywordQuery);
         List<String> locationContainsKeywordIdList = locationContainsKeywordList.stream().map(Location::getId).toList();

@@ -18,7 +18,7 @@ public class RouteController extends BaseController implements RouteResource {
     private final PagingRouteUseCase pagingRouteUseCase;
 
     @Override
-    public ResponseEntity<Object> listRoute(ListRoutePagingRequest request) {
+    public ResponseEntity<Object> listRoute(PagingRouteRequest request) {
         BasePagingResponse<GetRouteResponse> result = pagingRouteUseCase.execute(request);
         return successResponse(result, null);
     }

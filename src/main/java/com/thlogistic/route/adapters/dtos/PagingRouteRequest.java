@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class ListRoutePagingRequest extends BasePagingRequest {
+public class PagingRouteRequest extends BasePagingRequest {
     String keyword;
 
     @DecimalMin(value = "0.0", message = "Invalid min length")

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SimpleGetLocationResponse {
+public class GetSimpleLocationResponse {
     String id;
     String name;
     String address;

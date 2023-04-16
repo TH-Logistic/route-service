@@ -2,9 +2,8 @@ package com.thlogistic.route.mapper;
 
 import com.thlogistic.route.adapters.dtos.GetLocationResponse;
 import com.thlogistic.route.adapters.dtos.GetRouteResponse;
-import com.thlogistic.route.adapters.dtos.SimpleGetLocationResponse;
+import com.thlogistic.route.adapters.dtos.GetSimpleLocationResponse;
 import com.thlogistic.route.core.entities.Location;
-import com.thlogistic.route.entities.LocationEntity;
 import com.thlogistic.route.entities.RouteEntity;
 
 public class RouteMapper {
@@ -30,8 +29,8 @@ public class RouteMapper {
         );
     }
 
-    public static SimpleGetLocationResponse fromLocationToSimpleResponse(Location Location) {
-        return new SimpleGetLocationResponse(
+    public static GetSimpleLocationResponse fromLocationToSimpleResponse(Location Location) {
+        return new GetSimpleLocationResponse(
                 Location.getId(),
                 Location.getName(),
                 Location.getAddress()
