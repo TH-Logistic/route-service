@@ -2,6 +2,7 @@ package com.thlogistic.route.aop;
 
 import com.thlogistic.route.adapters.dtos.ErrorResponse;
 import com.thlogistic.route.aop.exception.DataNotFoundException;
+import com.thlogistic.route.aop.exception.UnauthorizedException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -28,6 +29,13 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
             DataNotFoundException ex, WebRequest request) {
         Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<Object> handleUnauthorizedException(
+            UnauthorizedException ex, WebRequest request) {
+        Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 }
 
