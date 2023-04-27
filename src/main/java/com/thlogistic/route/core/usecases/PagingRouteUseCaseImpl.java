@@ -26,11 +26,20 @@ public class PagingRouteUseCaseImpl implements PagingRouteUseCase {
     @Override
     public BasePagingResponse<GetRouteResponse> execute(PagingRouteRequest request) {
         String keywordQuery = request.getKeyword();
-        List<Location> locationContainsKeywordList = listLocationUseCase.execute(keywordQuery);
-        List<String> locationContainsKeywordIdList = locationContainsKeywordList.stream().map(Location::getId).toList();
 
-        BasePagingQueryResult<List<RouteEntity>> queryResult =
-                repository.pagingByLocationIds(locationContainsKeywordIdList, request.getMinLength(), request.getMaxLength(), request.getPage(), request.getSize());
+        BasePagingQueryResult<List<RouteEntity>> queryResult;
+
+        if (keywordQuery == null || keywordQuery.isEmpty()) {
+            queryResult = repository.paging(request.getPage(), request.getSize());
+        } else {
+            List<Location> locationContainsKeywordList = listLocationUseCase.execute(keywordQuery);
+            List<String> locationContainsKeywordIdList = locationContainsKeywordList.stream().map(Location::getId).toList();
+            queryResult = repository.pagingByLocationIds(locationContainsKeywordIdList,
+                    request.getMinLength(),
+                    request.getMaxLength(),
+                    request.getPage(),
+                    request.getSize());
+        }
 
         Map<String, Location> locationMap = new HashMap<>();
         queryResult.getData().forEach(routeEntity -> {
