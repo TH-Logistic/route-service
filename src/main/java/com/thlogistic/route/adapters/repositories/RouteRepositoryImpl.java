@@ -1,7 +1,6 @@
 package com.thlogistic.route.adapters.repositories;
 
 import com.thlogistic.route.core.ports.RouteRepository;
-import com.thlogistic.route.entities.LocationEntity;
 import com.thlogistic.route.entities.RouteEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -31,6 +30,17 @@ public class RouteRepositoryImpl implements RouteRepository {
     @Override
     public Optional<RouteEntity> findById(String id) {
         return repository.findById(id);
+    }
+
+    @Override
+    public BasePagingQueryResult<List<RouteEntity>> paging(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<RouteEntity> locations = repository.findAll(pageable);
+        BasePagingQueryResult<List<RouteEntity>> result = new BasePagingQueryResult<>();
+        result.data = locations.getContent();
+        result.total = locations.getTotalElements();
+        result.totalPage = locations.getTotalPages();
+        return result;
     }
 
     @Override

@@ -9,4 +9,5 @@ import java.util.Collection;
 
 public interface MongoRouteRepository extends MongoRepository<RouteEntity, String> {
     Page<RouteEntity> findByStartLocationIdInOrEndLocationIdInAndLengthBetween(Collection<String> fromId, Collection<String> toId, Double minLength, Double maxLength, Pageable pageable);
+    Page<RouteEntity> findAll(Pageable pageable);
 }
