@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PagingRouteRequest extends BasePagingRequest {
     String keyword;
 

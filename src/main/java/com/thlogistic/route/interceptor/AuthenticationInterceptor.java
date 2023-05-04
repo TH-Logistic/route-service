@@ -21,7 +21,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthenticationInterceptor implements HandlerInterceptor {
     private static final String AUTHORIZATION_HEADER = "Authorization";
-    private static final String AUTHORIZATION_URL = "http://www.thinhlh.com:8000/check-permissions";
+
+    private final AuthorizationClient authorizationClient;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
@@ -33,11 +34,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         List<String> roles = List.of("admin");
 
         if (token != null) {
-            AuthorizationClient authorizationClient = Feign.builder()
-                    .client(new OkHttpClient())
-                    .encoder(new GsonEncoder())
-                    .decoder(new GsonDecoder())
-                    .target(AuthorizationClient.class, AUTHORIZATION_URL);
+
             try {
                 BaseResponse<PermissionDto> permissionResponse = authorizationClient.checkPermission(token, roles);
                 if (!permissionResponse.getSuccess()) {

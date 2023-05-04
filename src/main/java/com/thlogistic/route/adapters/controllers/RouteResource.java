@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/route")
 interface RouteResource {
+
+    @GetMapping("/{id}")
+    ResponseEntity<Object> getRoute(@PathVariable String id);
+
     @GetMapping("/list")
     ResponseEntity<Object> listRoute(@Valid PagingRouteRequest request);
 

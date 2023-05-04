@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 public interface AuthorizationClient {
-    @RequestLine("POST")
+    @RequestLine("POST /check-permissions")
     @Headers({
             "Content-Type: application/json",
             "Authorization: {token}"

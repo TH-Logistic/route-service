@@ -2,6 +2,7 @@ package com.thlogistic.route.adapters.controllers;
 
 import com.thlogistic.route.adapters.dtos.*;
 import com.thlogistic.route.core.usecases.CreateRouteUseCase;
+import com.thlogistic.route.core.usecases.GetRouteUseCase;
 import com.thlogistic.route.core.usecases.PagingRouteUseCase;
 import com.thlogistic.route.core.usecases.UpdateRouteUseCase;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,13 @@ public class RouteController extends BaseController implements RouteResource {
     private final CreateRouteUseCase createRouteUseCase;
     private final UpdateRouteUseCase updateRouteUseCase;
     private final PagingRouteUseCase pagingRouteUseCase;
+    private final GetRouteUseCase getRouteUseCase;
+
+    @Override
+    public ResponseEntity<Object> getRoute(String id) {
+        GetRouteResponse response = getRouteUseCase.execute(id);
+        return successResponse(response, null);
+    }
 
     @Override
     public ResponseEntity<Object> listRoute(PagingRouteRequest request) {
