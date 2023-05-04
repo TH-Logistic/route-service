@@ -4,10 +4,6 @@ import com.thlogistic.route.adapters.dtos.BaseResponse;
 import com.thlogistic.route.aop.exception.UnauthorizedException;
 import com.thlogistic.route.client.AuthorizationClient;
 import com.thlogistic.route.client.PermissionDto;
-import feign.Feign;
-import feign.gson.GsonDecoder;
-import feign.gson.GsonEncoder;
-import feign.okhttp.OkHttpClient;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +17,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthenticationInterceptor implements HandlerInterceptor {
     private static final String AUTHORIZATION_HEADER = "Authorization";
-
     private final AuthorizationClient authorizationClient;
 
     @Override
@@ -34,7 +29,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         List<String> roles = List.of("admin");
 
         if (token != null) {
-
             try {
                 BaseResponse<PermissionDto> permissionResponse = authorizationClient.checkPermission(token, roles);
                 if (!permissionResponse.getSuccess()) {

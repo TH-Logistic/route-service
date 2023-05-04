@@ -16,8 +16,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 @Configuration
 public class ApplicationConfig {
 
-    @Value("${DOMAIN_URL}")
-    private static String domainUrl;
+    private static String domainUrl = System.getenv("DOMAIN_URL");
 
     public static final String AUTHORIZATION_BASE_URL = "http://" + domainUrl + ":8000";
 
