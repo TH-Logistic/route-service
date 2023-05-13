@@ -10,30 +10,12 @@ public class RouteMapper {
     public static GetRouteResponse fromRouteEntityAndLocationToResponse(RouteEntity entity, Location fromLocation, Location toLocation) {
         return new GetRouteResponse(
                 entity.getId(),
-                LocationMapper.fromLocationToSimpleResponse(fromLocation),
-                LocationMapper.fromLocationToSimpleResponse(toLocation),
+                LocationMapper.fromLocationToResponse(fromLocation),
+                LocationMapper.fromLocationToResponse(toLocation),
                 entity.getLength(),
                 entity.getTripBasedCost(),
                 entity.getTonBasedLimit(),
                 entity.getIsEnable()
-        );
-    }
-
-    public static GetLocationResponse fromLocationToResponse(Location Location) {
-        return new GetLocationResponse(
-                Location.getId(),
-                Location.getName(),
-                Location.getAddress(),
-                Location.getLatitude(),
-                Location.getLongitude()
-        );
-    }
-
-    public static GetSimpleLocationResponse fromLocationToSimpleResponse(Location Location) {
-        return new GetSimpleLocationResponse(
-                Location.getId(),
-                Location.getName(),
-                Location.getAddress()
         );
     }
 }

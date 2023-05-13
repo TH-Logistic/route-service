@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GetRouteResponse {
     String id;
-    GetSimpleLocationResponse fromLocation;
-    GetSimpleLocationResponse toLocation;
+    GetLocationResponse fromLocation;
+    GetLocationResponse toLocation;
     Double length;
     Double tripBasedCost;
     Double tonBasedLimit;
