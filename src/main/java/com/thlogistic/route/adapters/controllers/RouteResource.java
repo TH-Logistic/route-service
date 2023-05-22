@@ -4,6 +4,7 @@ import com.thlogistic.route.adapters.dtos.CreateRouteRequest;
 import com.thlogistic.route.adapters.dtos.PagingRouteRequest;
 import com.thlogistic.route.adapters.dtos.UpdateRouteRequest;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,9 @@ interface RouteResource {
 
     @GetMapping("/{id}")
     ResponseEntity<Object> getRoute(@PathVariable String id);
+
+    @GetMapping("detail/{id}")
+    ResponseEntity<Object> getRouteDetail(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @PathVariable String id);
 
     @GetMapping("/list")
     ResponseEntity<Object> listRoute(@Valid PagingRouteRequest request);

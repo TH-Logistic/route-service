@@ -1,10 +1,7 @@
 package com.thlogistic.route.adapters.controllers;
 
 import com.thlogistic.route.adapters.dtos.*;
-import com.thlogistic.route.core.usecases.CreateRouteUseCase;
-import com.thlogistic.route.core.usecases.GetRouteUseCase;
-import com.thlogistic.route.core.usecases.PagingRouteUseCase;
-import com.thlogistic.route.core.usecases.UpdateRouteUseCase;
+import com.thlogistic.route.core.usecases.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +15,23 @@ public class RouteController extends BaseController implements RouteResource {
     private final UpdateRouteUseCase updateRouteUseCase;
     private final PagingRouteUseCase pagingRouteUseCase;
     private final GetRouteUseCase getRouteUseCase;
+    private final GetRouteDetailUseCase getRouteDetailUseCase;
 
     @Override
     public ResponseEntity<Object> getRoute(String id) {
-        GetRouteResponse response = getRouteUseCase.execute(id);
-        return successResponse(response, null);
+        GetRouteResponse result = getRouteUseCase.execute(id);
+        return successResponse(result, null);
+    }
+
+    @Override
+    public ResponseEntity<Object> getRouteDetail(String token, String id) {
+        GetRouteDetailResponse result = getRouteDetailUseCase.execute(
+                new BaseTokenRequest<>(
+                        token,
+                        id
+                )
+        );
+        return successResponse(result, null);
     }
 
     @Override

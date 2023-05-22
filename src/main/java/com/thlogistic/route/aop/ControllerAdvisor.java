@@ -2,6 +2,7 @@ package com.thlogistic.route.aop;
 
 import com.thlogistic.route.adapters.dtos.ErrorResponse;
 import com.thlogistic.route.aop.exception.BadRequestException;
+import com.thlogistic.route.aop.exception.CustomRuntimeException;
 import com.thlogistic.route.aop.exception.DataNotFoundException;
 import com.thlogistic.route.aop.exception.UnauthorizedException;
 import org.springframework.http.HttpHeaders;
@@ -44,6 +45,13 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
             BadRequestException ex, WebRequest request) {
         Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomRuntimeException.class)
+    public ResponseEntity<Object> handleCustomRuntimeException(
+            CustomRuntimeException ex, WebRequest request) {
+        Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 
