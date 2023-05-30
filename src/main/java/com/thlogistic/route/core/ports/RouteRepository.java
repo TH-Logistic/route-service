@@ -14,6 +14,7 @@ public interface RouteRepository {
     String save(RouteEntity Route);
 
     Optional<RouteEntity> findById(String id);
+    List<RouteEntity> findByLocationId(String locationId);
 
     BasePagingQueryResult<List<RouteEntity>> paging(Integer page, Integer size);
     BasePagingQueryResult<List<RouteEntity>> pagingByLocationIds(Collection<String> locationIds, Double minLength, Double maxLength, Integer page, Integer size);

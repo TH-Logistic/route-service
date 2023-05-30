@@ -12,8 +12,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetRouteDetailResponse {
-    GetRouteSimpleResponse route;
+public class GetLocationDetailResponse {
+    GetLocationResponse location;
     JobStatisticDto statistic;
     List<GetJobListDto> jobs;
 }

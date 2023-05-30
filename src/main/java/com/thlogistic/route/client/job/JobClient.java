@@ -11,5 +11,5 @@ public interface JobClient {
             "Content-Type: application/json",
             "Authorization: {token}"
     })
-    BaseResponse<GetJobStatisticResponse<GetJobListNoRouteDto>> getJobStatisticForRoute(@Param("token") String token, @Param("routeId") String routeId);
+    BaseResponse<GetJobStatisticResponse<GetJobListDto>> getJobStatisticForRoute(@Param("token") String token, @Param("routeId") String routeId);
 }

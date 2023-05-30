@@ -11,12 +11,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GetJobListNoRouteDto {
+public class GetJobListDto {
     String id;
     String licensePlate;
     String driverInCharge;
     List<String> products;
     String createdAt;
+    String pickUpAt;
+    String unloadAt;
     Double orderFee;
     Integer status;
 }

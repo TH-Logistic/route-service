@@ -33,6 +33,11 @@ public class RouteRepositoryImpl implements RouteRepository {
     }
 
     @Override
+    public List<RouteEntity> findByLocationId(String locationId) {
+        return repository.findByStartLocationIdOrEndLocationId(locationId, locationId);
+    }
+
+    @Override
     public BasePagingQueryResult<List<RouteEntity>> paging(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<RouteEntity> locations = repository.findAll(pageable);
