@@ -21,6 +21,9 @@ interface RouteResource {
     @GetMapping("/list")
     ResponseEntity<Object> listRoute(@Valid PagingRouteRequest request);
 
+    @GetMapping("/total")
+    ResponseEntity<Object> getTotalRoutes(@RequestHeader(HttpHeaders.AUTHORIZATION) String token);
+
     @PostMapping
     ResponseEntity<Object> createRoute(@Valid @RequestBody CreateRouteRequest request);
 

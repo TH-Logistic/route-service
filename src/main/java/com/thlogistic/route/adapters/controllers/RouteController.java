@@ -15,6 +15,7 @@ public class RouteController extends BaseController implements RouteResource {
     private final UpdateRouteUseCase updateRouteUseCase;
     private final PagingRouteUseCase pagingRouteUseCase;
     private final GetRouteUseCase getRouteUseCase;
+    private final GetTotalRouteUseCase getTotalRouteUseCase;
     private final GetRouteDetailUseCase getRouteDetailUseCase;
 
     @Override
@@ -37,6 +38,12 @@ public class RouteController extends BaseController implements RouteResource {
     @Override
     public ResponseEntity<Object> listRoute(PagingRouteRequest request) {
         BasePagingResponse<GetRouteResponse> result = pagingRouteUseCase.execute(request);
+        return successResponse(result, null);
+    }
+
+    @Override
+    public ResponseEntity<Object> getTotalRoutes(String token) {
+        Integer result = getTotalRouteUseCase.execute(token);
         return successResponse(result, null);
     }
 

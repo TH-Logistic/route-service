@@ -28,6 +28,11 @@ public class RouteRepositoryImpl implements RouteRepository {
     }
 
     @Override
+    public List<RouteEntity> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public Optional<RouteEntity> findById(String id) {
         return repository.findById(id);
     }

@@ -13,6 +13,7 @@ public interface RouteRepository {
 
     String save(RouteEntity Route);
 
+    List<RouteEntity> findAll();
     Optional<RouteEntity> findById(String id);
     List<RouteEntity> findByLocationId(String locationId);
 
