@@ -17,6 +17,9 @@ interface LocationResource {
     @GetMapping("/detail/{id}")
     ResponseEntity<Object> getLocationDetail(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @PathVariable String id);
 
+    @GetMapping("/{id}")
+    ResponseEntity<Object> getLocation(@PathVariable String id);
+
     @PostMapping
     ResponseEntity<Object> createLocation(@Valid @RequestBody CreateLocationRequest request);
 

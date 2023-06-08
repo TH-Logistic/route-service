@@ -16,8 +16,6 @@ public class CreateRouteRequest {
     String startLocationId;
     @NotBlank(message = "Invalid end location ID ")
     String endLocationId;
-    @Min(value = 0, message = "Invalid length")
-    Double length;
     @Min(value = 0, message = "Invalid trip-based cost")
     Double tripBasedCost;
     @Min(value = 0, message = "Invalid ton-based limit")
